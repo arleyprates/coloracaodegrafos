@@ -104,7 +104,7 @@ public class Desenha {
 				atemp = "";
 			}
 			
-			arestas.add(new Aresta( buscavertice (av.substring(0, 1)), buscavertice(av.substring(0,0)), buscavertice(av.substring(0, 1)) ));
+			//arestas.add(new Aresta( buscavertice (av.substring(0, 1)), buscavertice(av.substring(0,0)), buscavertice(av.substring(0, 1)) ));
 			
 		} while (atemp.length() > 0);
 		

@@ -6,7 +6,7 @@ public class Aresta {
 	private Vertice vdestino;
 	
 	public Aresta(String n, Vertice o, Vertice d) {
-		nome = "";
+		nome = n;
 		vorigem = o;
 		vdestino = d;
 	}
