@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -25,11 +27,14 @@ public class ColoracaoGrafos {
 		
 		cores = new ArrayList<Cor>();
 		
+		//definindo vertices e quantidade
 		char v1 = 'A';
 		char v2 = 'B';
 		char v3 = 'C';
 		char v4 = 'D';
+		char v5 = 'E';
 		
+		//instancia vertice, add seus adjacentes e add vertice na lista vertices 
 		Vertice v = new Vertice(v1);		
 		
 		Vertice ad = new Vertice(v2);		
@@ -51,17 +56,30 @@ public class ColoracaoGrafos {
 		vertices.add(v);
 		adjacentes = new ArrayList<Vertice>();
 		
+		ad = new Vertice(v1);
+		adjacentes.add(ad);
 		ad = new Vertice(v2);
+		adjacentes.add(ad);
+		ad = new Vertice(v5);
 		adjacentes.add(ad);
 		v = new Vertice(v4);
 		v.setAdjacencia(adjacentes);
 		vertices.add(v);
 		
+		v = new Vertice(v5);
+		vertices.add(v);
+		
+		//definindo nome arestas e quantidades
 		String a1 = "AB";
 		String a2 = "AC";
 		String a3 = "CD";
 		String a4 = "DB";
+		String a5 = "DE";
+		String a6 = "DA";
 		
+		
+		
+		//instancia aresta, add o nome, o vertice origem, o vertice destino e add aresta na lista arestas
 		Aresta e = new Aresta(a1, vertices.get(0), vertices.get(1));		
 		arestas.add(e);
 		
@@ -74,18 +92,27 @@ public class ColoracaoGrafos {
 		e = new Aresta(a4, vertices.get(3), vertices.get(1));		
 		arestas.add(e);
 		
+		e = new Aresta(a5, vertices.get(3), vertices.get(0));		
+		arestas.add(e);
+		
+		e = new Aresta(a6, vertices.get(3), vertices.get(4));		
+		arestas.add(e);
+		
+		//intera na lista de vertices
 		System.out.print("V: { ");
 		for (Vertice vertice : vertices) {
 			System.out.print(vertice.getNome() + " ");
 		}
 		System.out.println("}");
 		
+		//interca na lista de arestas
 		System.out.print("E: {");
 		for (Aresta aresta : arestas) {
 			System.out.print(aresta.getNome() + " ");
 		}
 		System.out.println("}");
 		
+		//intera na lista de vertices, imprimi o vertice, seus adjacentes e o grau
 		System.out.println("LA: {");
 		for (Vertice vertice : vertices) {
 			System.out.print(vertice.getNome() +" -> ");
@@ -97,7 +124,56 @@ public class ColoracaoGrafos {
 		}
 		System.out.println("}");
 		
+		//ordenar a LA
+		/*
+		System.out.println("LA: {");
+		for (Vertice vertice : vertices) {
+			System.out.print(vertice.getNome() +" -> ");
+			for (Vertice adjacente : vertice.getAdjacencia()) {
+					System.out.print(adjacente.getNome() + " ");
+			} 
+			System.out.print(vertice.getgrau() + " ");
+			System.out.println("");
+		}
+		System.out.println("}");*/
 		
+		Collections.sort(vertices, new CompareVerticeAdjacentes());
+		
+		//intera na lista de vertices
+		System.out.print("VO: { ");
+		for (Vertice vertice : vertices) {
+			System.out.print(vertice.getNome() + " ");
+		}
+		System.out.println("}");
+				
 		//pegar o vertice de maior grau e colori
+	}
+	
+	class CompareVerticeAdjacentes implements Comparator {
+		boolean crescente = true;
+		
+		public CompareVerticeAdjacentes() {
+			this.crescente = crescente;
+		}
+		
+		public int compare(Object o1, Object o2) {
+			// TODO Auto-generated method stub
+			Vertice v1 = (Vertice) o1;
+			Vertice v2 = (Vertice) o2;
+			
+			System.out.print(v1.getNome() + " grau:" + v1.getgrau() + " ");
+			System.out.print(v2.getNome() + " grau:" + v2.getgrau() + " ");
+			
+			if (v1.getgrau() < v2.getgrau()) {
+				System.out.println("opa if 1");
+				 return 1;
+			} else if (v1.getgrau() > v2.getgrau()) {
+				System.out.println("opa if 2");
+				return -1;
+			}
+			System.out.println("");
+			return 0;
+		}
+		
 	}
 }
