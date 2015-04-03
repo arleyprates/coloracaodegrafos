@@ -150,28 +150,17 @@ public class ColoracaoGrafos {
 	}
 	
 	class CompareVerticeAdjacentes implements Comparator {
-		boolean crescente = true;
-		
-		public CompareVerticeAdjacentes() {
-			this.crescente = crescente;
-		}
 		
 		public int compare(Object o1, Object o2) {
 			// TODO Auto-generated method stub
 			Vertice v1 = (Vertice) o1;
 			Vertice v2 = (Vertice) o2;
 			
-			System.out.print(v1.getNome() + " grau:" + v1.getgrau() + " ");
-			System.out.print(v2.getNome() + " grau:" + v2.getgrau() + " ");
-			
 			if (v1.getgrau() < v2.getgrau()) {
-				System.out.println("opa if 1");
 				 return 1;
 			} else if (v1.getgrau() > v2.getgrau()) {
-				System.out.println("opa if 2");
 				return -1;
-			}
-			System.out.println("");
+			}			
 			return 0;
 		}
 		
